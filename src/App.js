@@ -62,7 +62,7 @@ const App = () => {
     </select>
   )
   return (
-    <div className='App'>
+    <div className='App' data-test='component-app'>
       <Jumbotron className='jumbotron'>
         <h1 className='text'>Welcome to Kratos Billing Systems</h1>
         <p className='text'>

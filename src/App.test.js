@@ -6,7 +6,14 @@ import App from './App'
 
 Enzyme.configure({ adapter: new EnzymeAdapter() })
 
-test('renders without crashing', () => {
+test('renders without errors', () => {
   const wrapper = shallow(<App />)
-  expect(wrapper).toBeTruthy()
+  const appComponent = wrapper.find("[data-test='component-app']")
+  expect(appComponent.length).toBe(1)
 })
+
+test('renders generate receipt button', () => {})
+
+test('no receipt displayed', () => {})
+
+test('clicking generate receipt renders receipts', () => {})
