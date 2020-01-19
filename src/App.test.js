@@ -1,10 +1,12 @@
 import React from 'react'
-import { render } from '@testing-library/react'
+import Enzyme, { shallow } from 'enzyme'
+import EnzymeAdapter from 'enzyme-adapter-react-16'
+
 import App from './App'
 
-test('renders learn react link', () => {
-  // const { getByText } = render(<App />)
-  // const linkElement = getByText(/your/i)
-  // expect(linkElement).toBeInTheDocument()
-  expect(1).toBe(1)
+Enzyme.configure({ adapter: new EnzymeAdapter() })
+
+test('renders without crashing', () => {
+  const wrapper = shallow(<App />)
+  expect(wrapper).toBeTruthy()
 })
