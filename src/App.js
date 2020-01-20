@@ -3,12 +3,16 @@ import CSVReader from 'react-csv-reader'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Receipt from './components/Receipt'
-import { Jumbotron, Button } from 'react-bootstrap'
+import { Jumbotron, Button, Modal } from 'react-bootstrap'
 
 const App = () => {
   const [timeSheet, setTimeSheet] = useState([])
   const [company, setCompany] = useState('')
   const [receipt, setReceipt] = useState([])
+  const [show, setShow] = useState(false)
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const papaparseOptions = {
     header: true,
@@ -28,7 +32,7 @@ const App = () => {
 
   const handleGenerateReceipt = () => {
     if (!company) {
-      alert('Select a company from the drop down list')
+      handleShow()
     }
     // filter companies by their name
     let res = []
@@ -50,11 +54,11 @@ const App = () => {
     setReceipt([...res])
   }
 
-  const distinctCompanies = [...new Set(timeSheet.map(x => x.project))]
+  // const distinctCompanies = [...new Set(timeSheet.map(x => x.project))]
   const selectCompany = (
     <select onChange={handleCompanyChange} disabled={timeSheet.length === 0}>
       <option value=''>select company</option>
-      {distinctCompanies.map((item, idx) => (
+      {[...new Set(timeSheet.map(x => x.project))].map((item, idx) => (
         <option key={idx} value={item}>
           {item}
         </option>
@@ -63,6 +67,17 @@ const App = () => {
   )
   return (
     <div className='App' data-test='component-app'>
+      <Modal data-test='component-modal' show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Error</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Select a company first!</Modal.Body>
+        <Modal.Footer>
+          <Button variant='secondary' onClick={handleClose}>
+            Close
+          </Button>
+        </Modal.Footer>
+      </Modal>
       <Jumbotron className='jumbotron'>
         <h1 className='text'>Welcome to Kratos Billing Systems</h1>
         <p className='text'>
@@ -75,18 +90,29 @@ const App = () => {
         parserOptions={papaparseOptions}
         onFileLoaded={handleFileUpload}
       />
-      <Button onClick={handleGenerateReceipt} disabled={timeSheet.length === 0}>
-        Generate Receipt
-      </Button>
+      <div className='container'>
+        <div className='inputs'>
+          <div>
+            <Button
+              data-test='component-generate-receipt'
+              onClick={handleGenerateReceipt}
+              disabled={timeSheet.length === 0}
+              className='btn'
+            >
+              Generate Receipt
+            </Button>
+          </div>
 
-      {selectCompany}
-      <br />
+          <div>{selectCompany}</div>
+        </div>
+        <br />
 
-      {receipt.length === 0 ? (
-        <p>Your receipts will show here</p>
-      ) : (
-        <Receipt company={company} receipt={receipt} />
-      )}
+        {receipt.length === 0 ? (
+          <p data-test='component-receipt'>Your receipts will show here</p>
+        ) : (
+          <Receipt company={company} receipt={receipt} />
+        )}
+      </div>
     </div>
   )
 }

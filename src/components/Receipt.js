@@ -2,14 +2,21 @@ import React from 'react'
 import { Table } from 'react-bootstrap'
 
 const Receipt = ({ receipt, company }) => {
+  const formatter = new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2
+  })
   //   calculate total cost
   const totalCost = receipt.reduce(
     (accumulator, item) => accumulator + item.total,
     0
   )
   return (
-    <div>
-      <h2>Company: {company.toUpperCase()}</h2>
+    <div data-test='component-receipt-app'>
+      <h2 data-test='component-company-name'>
+        Company: {company.toUpperCase()}
+      </h2>
       <Table
         striped
         bordered
@@ -26,13 +33,13 @@ const Receipt = ({ receipt, company }) => {
             <th>Cost</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody data-test='component-table-body'>
           {receipt.map((item, idx) => (
             <tr key={idx}>
               <td>{item.employee_id}</td>
               <td>{item.hours}</td>
-              <td>{item.billable_rate.toFixed(2)}</td>
-              <td>{item.total.toFixed(2)}</td>
+              <td>{formatter.format(item.billable_rate)}</td>
+              <td>{formatter.format(item.total)}</td>
             </tr>
           ))}
         </tbody>
@@ -44,7 +51,9 @@ const Receipt = ({ receipt, company }) => {
               <strong>Total</strong>
             </td>
             <td>
-              <strong>{totalCost.toFixed(2)}</strong>
+              <strong data-test='component-total-cost'>
+                {formatter.format(totalCost)}
+              </strong>
             </td>
           </tr>
         </tfoot>
