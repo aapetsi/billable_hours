@@ -57,7 +57,7 @@ const App = () => {
   // const distinctCompanies = [...new Set(timeSheet.map(x => x.project))]
   const selectCompany = (
     <select onChange={handleCompanyChange} disabled={timeSheet.length === 0}>
-      <option value=''>select company</option>
+      <option value=''>Select Company</option>
       {[...new Set(timeSheet.map(x => x.project))].map((item, idx) => (
         <option key={idx} value={item}>
           {item}
@@ -96,14 +96,13 @@ const App = () => {
             <Button
               data-test='component-generate-receipt'
               onClick={handleGenerateReceipt}
-              disabled={timeSheet.length === 0}
-              className='btn'
+              disabled={!company ? true : false}
             >
               Generate Receipt
             </Button>
           </div>
 
-          <div>{selectCompany}</div>
+          <div data-testid='select'>{selectCompany}</div>
         </div>
         <br />
 

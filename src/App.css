@@ -28,3 +28,7 @@
   width: 60%;
   align-items: center;
 }
+
+.disabled {
+  cursor: not-allowed;
+}
