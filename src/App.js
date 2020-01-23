@@ -108,7 +108,9 @@ const App = () => {
         <br />
 
         {receipt.length === 0 ? (
-          <p data-test='component-receipt'>Your receipts will show here</p>
+          <p data-testid='receipt-none' data-test='component-receipt'>
+            Your receipts will show here
+          </p>
         ) : (
           <Receipt company={company} receipt={receipt} />
         )}

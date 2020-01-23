@@ -1,3 +1,25 @@
+## Running the app
+
+Upload a csv file in the following format
+
+```
+employee_id,billable_rate,project,date,start_time,end_time
+1,300,instagram,2020-01-21,10:30,15:30
+2,100,twitter,2020-01-21,08:00,14:15
+3,250,yahoo,2020-01-21,13:00,15:00
+1,300,uber,2020-01-22,09:00,11:00
+```
+
+Or in this format as well (ensure consistent spacing between fields). This can be achieved by copying and pasting the data from excel into a `.txt` file
+
+```
+employee_id	billable_rate	project	date	start_time	end_time
+1	300	google	2020-01-20	08:00	12:00
+2	100	facebook	2020-01-20	09:30	16:50
+3	250	twitter	2020-01-20	12:00	16:00
+1	300	instagram	2020-01-21	10:30	15:30
+```
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

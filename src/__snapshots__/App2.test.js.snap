@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App component should match the snapshot 1`] = `
+<div>
+  <div
+    class="App"
+    data-test="component-app"
+  >
+    <div
+      class="jumbotron jumbotron"
+    >
+      <h1
+        class="text"
+      >
+        Welcome to Kratos Billing Systems
+      </h1>
+      <p
+        class="text"
+      >
+        To begin, upload your time sheet data in CSV format
+      </p>
+    </div>
+    <div
+      class="react-csv-input"
+    >
+      <input
+        accept=".csv, text/csv"
+        class="csv-input"
+        type="file"
+      />
+    </div>
+    <div
+      class="container"
+    >
+      <div
+        class="inputs"
+      >
+        <div>
+          <button
+            class="btn btn btn-primary"
+            data-test="component-generate-receipt"
+            disabled=""
+            type="button"
+          >
+            Generate Receipt
+          </button>
+        </div>
+        <div>
+          <select
+            disabled=""
+          >
+            <option
+              value=""
+            >
+              select company
+            </option>
+          </select>
+        </div>
+      </div>
+      <br />
+      <p
+        data-test="component-receipt"
+        data-testid="receipt-none"
+      >
+        Your receipts will show here
+      </p>
+    </div>
+  </div>
+</div>
+`;
