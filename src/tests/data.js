@@ -1,19 +1,4 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
-import * as rtl from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
-import { setHookState } from './utils/setHookState'
-
-afterEach(rtl.cleanup)
-
-let wrapper, csvReader
-
-beforeEach(() => {
-  wrapper = rtl.render(<App />)
-})
-
-const timeSheet = [
+export const timeSheet = [
   {
     employee_id: 1,
     billable_rate: 300,
@@ -135,8 +120,10 @@ const timeSheet = [
     end_time: '16:00'
   }
 ]
-const company = 'facebook'
-const receipt = [
+
+export const company = 'facebook'
+
+export const receipt = [
   {
     employee_id: 2,
     billable_rate: 100,
@@ -154,32 +141,3 @@ const receipt = [
     total: 500
   }
 ]
-const show = false
-
-describe('App component', () => {
-  test('should render without crashing', () => {
-    const div = document.createElement('div')
-    ReactDOM.render(<App />, div)
-  })
-
-  test('should match the snapshot', () => {
-    expect(wrapper.container).toMatchSnapshot()
-  })
-
-  test('should render homepage heading', () => {
-    expect(
-      wrapper.queryByText(/welcome to kratos billing systems/i)
-    ).toBeInTheDocument()
-  })
-
-  test('button should be disabled', () => {
-    const receiptBtn = wrapper.queryByText(/generate receipt/i)
-    expect(receiptBtn.disabled).toBe(true)
-  })
-
-  test('should render the company drop down', () => {
-    const select = rtl.getByTestId(wrapper.container, 'select')
-    console.log(select.textContent)
-    expect(select).toHaveTextContent(/select company/i)
-  })
-})

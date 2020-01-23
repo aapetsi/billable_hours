@@ -1,60 +1,22 @@
-import React, { useState } from 'react'
+import React from 'react'
 import CSVReader from 'react-csv-reader'
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Receipt from './components/Receipt'
-import { Jumbotron, Button, Modal } from 'react-bootstrap'
+import { Jumbotron, Button } from 'react-bootstrap'
+import { useReceipt } from './utils/useReceipt'
 
 const App = () => {
-  const [timeSheet, setTimeSheet] = useState([])
-  const [company, setCompany] = useState('')
-  const [receipt, setReceipt] = useState([])
-  const [show, setShow] = useState(false)
+  const {
+    handleCompanyChange,
+    handleGenerateReceipt,
+    company,
+    receipt,
+    timeSheet,
+    papaparseOptions,
+    handleFileUpload
+  } = useReceipt()
 
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
-
-  const papaparseOptions = {
-    header: true,
-    dynamicTyping: true,
-    skipEmptyLines: true,
-    transformHeader: header => header.toLowerCase().replace(/\W/g, '_')
-  }
-
-  const handleFileUpload = (data, filename) => {
-    setReceipt([])
-    setTimeSheet([...data])
-  }
-
-  const handleCompanyChange = e => {
-    setCompany(e.target.value)
-  }
-
-  const handleGenerateReceipt = () => {
-    if (!company) {
-      handleShow()
-    }
-    // filter companies by their name
-    let res = []
-    const filteredCompanies = timeSheet.filter(item => item.project === company)
-    filteredCompanies.forEach(item => {
-      // define start and end dates
-      const start = new Date(`${item.date} ${item.start_time}`)
-      const end = new Date(`${item.date} ${item.end_time}`)
-      const hours = (end.getTime() - start.getTime()) / 3.6e6
-      res.push({
-        employee_id: item.employee_id,
-        billable_rate: item.billable_rate,
-        project: item.project,
-        date: item.date,
-        hours: hours.toFixed(2),
-        total: hours * item.billable_rate
-      })
-    })
-    setReceipt([...res])
-  }
-
-  // const distinctCompanies = [...new Set(timeSheet.map(x => x.project))]
   const selectCompany = (
     <select onChange={handleCompanyChange} disabled={timeSheet.length === 0}>
       <option value=''>Select Company</option>
@@ -67,17 +29,6 @@ const App = () => {
   )
   return (
     <div className='App' data-test='component-app'>
-      <Modal data-test='component-modal' show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Error</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>Select a company first!</Modal.Body>
-        <Modal.Footer>
-          <Button variant='secondary' onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
       <Jumbotron className='jumbotron'>
         <h1 className='text'>Welcome to Kratos Billing Systems</h1>
         <p className='text'>
@@ -92,9 +43,9 @@ const App = () => {
       />
       <div className='container'>
         <div className='inputs'>
-          <div>
+          <div data-test='component-generate-receipt'>
             <Button
-              data-test='component-generate-receipt'
+              data-testid='generate-receipt'
               onClick={handleGenerateReceipt}
               disabled={!company ? true : false}
             >

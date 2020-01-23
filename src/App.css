@@ -8,8 +8,9 @@
 }
 
 .text {
-  color: rgb(88, 106, 255);
-  font-weight: bold;
+  color: rgb(17, 73, 87);
+  font-weight: bolder;
+  letter-spacing: 1px;
 }
 
 .csv-input {
@@ -21,7 +22,6 @@
 }
 
 .inputs {
-  /* border: 2px solid red; */
   margin: 0 auto;
   display: flex;
   justify-content: space-evenly;

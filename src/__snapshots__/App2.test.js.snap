@@ -35,12 +35,13 @@ exports[`App component should match the snapshot 1`] = `
       <div
         class="inputs"
       >
-        <div>
+        <div
+          data-test="component-generate-receipt"
+        >
           <button
-            class="btn btn-primary"
-            data-test="component-generate-receipt"
+            data-testid="generate-receipt"
             disabled=""
-            type="button"
+            id="btn"
           >
             Generate Receipt
           </button>
