@@ -20,12 +20,6 @@
   border-radius: 5px;
 }
 
-
-
-.btn:hover {
-  cursor: not-allowed;
-}
-
 .inputs {
   /* border: 2px solid red; */
   margin: 0 auto;

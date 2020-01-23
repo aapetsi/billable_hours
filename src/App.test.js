@@ -202,7 +202,6 @@ test('expect modal to show', () => {
   button.simulate('click')
   const receipt_ = findByTestAttr(wrapper, 'component-receipt')
   expect(receipt_).toEqual({})
-  console.log(wrapper.debug())
 })
 
 test('clicking generate receipt renders receipts', () => {})
