@@ -1,6 +1,7 @@
 import React from 'react'
 import Enzyme, { shallow } from 'enzyme'
 import EnzymeAdapter from 'enzyme-adapter-react-16'
+import { receipt } from './data'
 
 import Receipt from '../components/Receipt'
 
@@ -26,25 +27,6 @@ const setup = (props = {}, state = null) => {
 const findByTestAttr = (wrapper, val) => {
   return wrapper.find(`[data-test="${val}"]`)
 }
-
-const receipt = [
-  {
-    employee_id: 2,
-    billable_rate: 100,
-    project: 'slydepay',
-    date: '2020-01-22',
-    hours: '9.00',
-    total: 900
-  },
-  {
-    employee_id: 1,
-    billable_rate: 300,
-    project: 'slydepay',
-    date: '2020-01-24',
-    hours: '7.00',
-    total: 2100
-  }
-]
 
 describe('Test Receipt Component', () => {
   test('renders without errors', () => {

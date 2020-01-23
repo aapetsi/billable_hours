@@ -23,7 +23,6 @@ describe('test hooks', () => {
   test('handles company selection', () => {
     act(() => {
       result.current.handleFileUpload(timeSheet)
-      //   rtl.fireEvent
       result.current.company = 'facebook'
       expect(result.current.company).toBe('facebook')
     })
