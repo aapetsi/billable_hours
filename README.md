@@ -20,6 +20,8 @@ employee_id	billable_rate	project	date	start_time	end_time
 1	300	instagram	2020-01-21	10:30	15:30
 ```
 
+See [test1.csv](./test1.csv) and [test2.csv](./test2.csv) as reference
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
