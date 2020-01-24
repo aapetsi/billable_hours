@@ -34,9 +34,9 @@ const Receipt = ({ receipt, company }) => {
   )
   return (
     <div data-test='component-receipt-app'>
-      <h2 data-test='component-company-name'>
+      <h4 data-test='component-company-name'>
         Company: {company.toUpperCase()}
-      </h2>
+      </h4>
       <Table
         striped
         bordered
