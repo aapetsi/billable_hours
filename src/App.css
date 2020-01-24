@@ -32,3 +32,11 @@
 .disabled {
   cursor: not-allowed;
 }
+
+@media only screen and (max-width: 500px) {
+  .inputs {
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100px;
+  }
+}
