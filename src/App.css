@@ -34,9 +34,17 @@
 }
 
 @media only screen and (max-width: 500px) {
+  .App {
+    padding: 2px;
+  }
   .inputs {
     display: flex;
     flex-direction: column-reverse;
     height: 100px;
+  }
+
+  .csv-input {
+    width: 70%;
+    border: 1px solid red;
   }
 }
