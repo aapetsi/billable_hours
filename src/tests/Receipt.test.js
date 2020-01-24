@@ -56,6 +56,6 @@ describe('Test Receipt Component', () => {
       receipt
     })
     const total = findByTestAttr(wrapper, 'component-total-cost')
-    expect(total.text()).toMatch('$3,000.00')
+    expect(total.text()).toMatch('NGN 1,233.33')
   })
 })

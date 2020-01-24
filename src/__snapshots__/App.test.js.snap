@@ -39,9 +39,10 @@ exports[`App component should match the snapshot 1`] = `
           data-test="component-generate-receipt"
         >
           <button
+            class="btn btn-primary"
             data-testid="generate-receipt"
             disabled=""
-            id="btn"
+            type="button"
           >
             Generate Receipt
           </button>

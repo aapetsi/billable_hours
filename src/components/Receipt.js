@@ -4,11 +4,31 @@ import { Table } from 'react-bootstrap'
 const Receipt = ({ receipt, company }) => {
   const formatter = new Intl.NumberFormat('en-US', {
     style: 'currency',
-    currency: 'USD',
+    currency: 'NGN',
     minimumFractionDigits: 2
   })
+
+  let receiptCopy = receipt.slice(0)
+
+  // group by employee id
+  let result = []
+  receiptCopy.forEach((item, index) => {
+    if (result.length === 0) {
+      return result.push(item)
+    }
+    // find if item already exists in array
+    const found = result.find(x => x.employee_id === item.employee_id)
+
+    if (found) {
+      found.total = Number(item.total) + Number(found.total)
+      found.hours = Number(item.hours) + Number(found.hours)
+    } else {
+      result.push(item)
+    }
+  })
+
   //   calculate total cost
-  const totalCost = receipt.reduce(
+  const totalCost = result.reduce(
     (accumulator, item) => accumulator + item.total,
     0
   )
@@ -34,7 +54,7 @@ const Receipt = ({ receipt, company }) => {
           </tr>
         </thead>
         <tbody data-test='component-table-body'>
-          {receipt.map((item, idx) => (
+          {result.map((item, idx) => (
             <tr key={idx}>
               <td>{item.employee_id}</td>
               <td>{item.hours}</td>
